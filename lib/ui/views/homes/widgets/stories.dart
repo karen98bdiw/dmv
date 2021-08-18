@@ -10,16 +10,20 @@ class HomesStories extends ViewModelWidget<HomesViewModel> {
   Widget itemBuilder(
     BuildContext context,
     int index,
-    String title,
+    StoryItem item,
   ) =>
       Container(
-          margin: index == 0
-              ? AppStyles.storiesListFirstItemLeftMargin
-              : EdgeInsets.zero,
-          child: StoryItem(title: title));
+        margin: index == 0
+            ? AppStyles.storiesListFirstItemLeftMargin
+            : EdgeInsets.zero,
+        child: StoryItem(
+          title: item.title,
+          asset: item.asset,
+        ),
+      );
 
   Widget separatorBuilder(BuildContext context, int index) => SizedBox(
-        width: 20,
+        width: 10,
       );
 
   @override
@@ -29,6 +33,7 @@ class HomesStories extends ViewModelWidget<HomesViewModel> {
   ) {
     print("Homes Stories build");
     return Container(
+      margin: EdgeInsets.only(top: 20),
       height: AppSizes.storyListHeight,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
@@ -42,21 +47,38 @@ class HomesStories extends ViewModelWidget<HomesViewModel> {
 
 class StoryItem extends StatelessWidget {
   final String title;
+  final String asset;
   const StoryItem({
     Key? key,
     required this.title,
+    required this.asset,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.bottomLeft,
       decoration: BoxDecoration(
         color: Colors.green,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          image: AssetImage(
+            asset,
+          ),
+          fit: BoxFit.cover,
+        ),
       ),
       height: double.infinity,
       width: AppSizes.storyItemWidth,
-      child: Center(child: Text(title)),
+      padding: EdgeInsets.all(10),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+          fontSize: 11,
+        ),
+      ),
     );
   }
 }

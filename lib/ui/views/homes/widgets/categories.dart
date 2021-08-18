@@ -1,3 +1,4 @@
+import 'package:domovedov/ui/style/styles.dart';
 import 'package:domovedov/ui/views/home/home_viewmodel.dart';
 import 'package:domovedov/ui/views/homes/homes_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:stacked/stacked.dart';
 class Categories extends ViewModelWidget<HomesViewModel> {
   const Categories({Key? key}) : super(key: key);
 
-  Widget separatorbuilder(c, i) => SizedBox(width: 20);
+  Widget separatorbuilder(c, i) => SizedBox(width: 7);
 
   Widget itembuilder(
     c,
@@ -18,20 +19,15 @@ class Categories extends ViewModelWidget<HomesViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-      ),
-      child: Container(
-        alignment: Alignment.center,
-        height: 40,
-        width: double.infinity,
-        child: ListView.separated(
-          separatorBuilder: separatorbuilder,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: itembuilder,
-          itemCount: model.categiries.length,
-        ),
+    return Container(
+      alignment: Alignment.center,
+      height: 40,
+      width: double.infinity,
+      child: ListView.separated(
+        separatorBuilder: separatorbuilder,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: itembuilder,
+        itemCount: model.categiries.length,
       ),
     );
   }
@@ -44,6 +40,12 @@ class CatergoryItem extends ViewModelWidget<HomesViewModel> {
     required this.itemIndex,
   }) : super(key: key);
 
+  TextStyle getTextStyle(HomesViewModel model) {
+    return itemIndex == model.curentCategoryIndex
+        ? AppTextStyles.CHECKED_CATEGORY_TEXT_STYLE
+        : AppTextStyles.UNCHECKED_CATEGORY_TEXT_STYLE;
+  }
+
   @override
   Widget build(BuildContext context, model) {
     return GestureDetector(
@@ -51,17 +53,19 @@ class CatergoryItem extends ViewModelWidget<HomesViewModel> {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
+          border: itemIndex != model.curentCategoryIndex
+              ? Border.all(
+                  width: 1, color: AppColors.UNCHECKED_CATEGORY_BORDER_COLOR)
+              : null,
           color: itemIndex == model.curentCategoryIndex
-              ? Colors.grey
-              : Colors.green,
+              ? AppColors.checkedCategoryColor
+              : AppColors.uncheckedCategoryColor,
           borderRadius: BorderRadius.circular(40),
         ),
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
           model.categiries[itemIndex],
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: getTextStyle(model),
         ),
       ),
     );

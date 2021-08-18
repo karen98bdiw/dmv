@@ -16,21 +16,26 @@ class HomesScreen extends ViewModelWidget<HomesViewModel> {
     return AppScaffold(
       usePadding: false,
       child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            title(),
-            HomesStories(),
-            Categories(),
-            Homes(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HomesStories(),
+              title(),
+              Categories(),
+              Homes(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget title() => Padding(
-        padding: AppPaddings.a20,
-        child: Text("Московская Область"),
+        padding: AppPaddings.screenTitlePadding,
+        child: Text(
+          "Московская Область",
+          style: AppTextStyles.SCREEN_TITLE_STYLE,
+        ),
       );
 }

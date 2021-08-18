@@ -33,6 +33,7 @@ class AppSizes {
   static double bottomNavigationBarPaddingSize = heightByTemplate(size: 5);
   static double bottomNavigationBarItemPadding = 2;
   static double storiesListFirstItemLeftMargin = 20;
-  static double storyItemWidth = window.physicalSize.width * 0.1;
-  static double storyListHeight = window.physicalSize.height * 0.07;
+  static double storyItemWidth = 100;
+  static double storyListHeight = 150;
+  static double scaffoldHorizontalPadding = 20;
 }
