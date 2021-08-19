@@ -90,14 +90,13 @@ class HomeItem extends StatelessWidget {
         height: 200,
         // width: MediaQuery.of(context).size.width - 40,
         decoration: BoxDecoration(
-            color: Colors.red,
             // borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
-              image: AssetImage(
-                image,
-              ),
-              fit: BoxFit.cover,
-            )),
+          image: AssetImage(
+            image,
+          ),
+          fit: BoxFit.cover,
+        )),
       );
 
   Widget titleView() => Container(

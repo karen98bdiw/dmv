@@ -1,5 +1,9 @@
+import 'package:domovedov/base/app_keys.dart';
+import 'package:domovedov/base/routes.dart';
 import 'package:domovedov/ui/style/styles.dart';
+import 'package:domovedov/ui/views/homes/pages/configurator_screen.dart';
 import 'package:domovedov/ui/widgets/app_button.dart';
+import 'package:domovedov/ui/widgets/app_icon_button.dart';
 import 'package:domovedov/ui/widgets/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -10,17 +14,24 @@ class HomeOverViewScreenRoute extends MaterialPageRoute {
         );
 }
 
-class HomeOverViewScreen extends StatelessWidget {
+class HomeOverViewScreen extends StatefulWidget {
   const HomeOverViewScreen({Key? key}) : super(key: key);
 
   @override
+  _HomeOverViewScreenState createState() => _HomeOverViewScreenState();
+}
+
+class _HomeOverViewScreenState extends State<HomeOverViewScreen> {
+  @override
   Widget build(BuildContext context) {
+    print("HOME OVERVIEW BUILD");
     return AppScaffold(
       usePadding: false,
-      color: Colors.grey[50]!,
+      color: Colors.red,
       child: Container(
         margin: EdgeInsets.only(top: 40),
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -31,7 +42,7 @@ class HomeOverViewScreen extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     beforeImage(),
@@ -48,11 +59,16 @@ class HomeOverViewScreen extends StatelessWidget {
     );
   }
 
-  Widget image() => Image.asset(
-        "assets/h1.png",
-        width: double.infinity,
+  Widget image() => Container(
         height: 200,
-        fit: BoxFit.fitWidth,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(
+            "assets/h1.png",
+          ),
+          fit: BoxFit.cover,
+        )),
       );
 
   Widget beforeImage() => Padding(
@@ -67,7 +83,9 @@ class HomeOverViewScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             titleView(),
+            AppStyles.heightDivider(25),
             description(),
+            AppStyles.heightDivider(25),
             special(),
           ],
         ),
@@ -82,24 +100,22 @@ class HomeOverViewScreen extends StatelessWidget {
           titleAcitons(),
         ],
       );
+
   Widget title() => Text(
         "Дом BLYSKÄR",
-        style: AppTextStyles.SCREEN_TITLE_STYLE,
+        style: AppTextStyles.LARGE_TEXT_STYLE,
       );
+
   Widget titleAcitons() => Row(
         children: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.phone,
-            ),
+          AppIconButton(
+            iconData: Icons.phone,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.close,
-            ),
-          ),
+          AppStyles.widthDivider(20),
+          AppIconButton(
+            iconData: Icons.close,
+            filled: false,
+          )
         ],
       );
 
@@ -120,12 +136,14 @@ class HomeOverViewScreen extends StatelessWidget {
               ],
             ),
           ),
+          AppStyles.heightDivider(12),
           Text(
             "Удеобный и уютный одноэтажный домс надежной двускатной крышей из битумной черепицы. Оригинальный экстерьер идеально отвечает современной планировке функционального строения. Оригинальный экстерьер идеально отвечает современной планировке функционального строения.",
             style: AppTextStyles.MIDDLE_TEXT_STYLE,
           ),
         ],
       );
+
   Widget special() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -133,12 +151,14 @@ class HomeOverViewScreen extends StatelessWidget {
             "Особенности",
             style: AppTextStyles.LARGE_TEXT_STYLE,
           ),
+          AppStyles.heightDivider(17),
           Text(
             "Технология фахверк",
             style: AppTextStyles.MIDDLE_TEXT_STYLE.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
+          AppStyles.heightDivider(17),
           Text(
             "Удобный и уютный одноэтажныйдом с надежной двускатной крышей надежной двускатной",
             style: AppTextStyles.SMALL_TEXT_STYLE.copyWith(
@@ -147,11 +167,13 @@ class HomeOverViewScreen extends StatelessWidget {
           ),
         ],
       );
+
   Widget afterImage() => Padding(
         padding: EdgeInsets.only(
           top: 25,
           left: 20,
           right: 20,
+          bottom: 40,
         ),
         child: Column(
           children: [
@@ -159,6 +181,7 @@ class HomeOverViewScreen extends StatelessWidget {
           ],
         ),
       );
+
   Widget price() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -175,6 +198,7 @@ class HomeOverViewScreen extends StatelessWidget {
               ),
             ],
           ),
+          AppStyles.heightDivider(4),
           Text(
             "Точная стоимость в конфигураторе",
             style: AppTextStyles.SMALLEST_TEXT_STYLE,
@@ -182,17 +206,33 @@ class HomeOverViewScreen extends StatelessWidget {
         ],
       );
 
-  Widget buttomContent() => Column(
-        children: [
-          button(),
-          additional(),
-          AppStyles.heightDivider(20),
-        ],
+  Widget buttomContent() => Container(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            button(),
+            AppStyles.heightDivider(17),
+            additional(),
+            AppStyles.heightDivider(20),
+          ],
+        ),
       );
 
-  Widget button() => AppButton(title: "Конфигуратор");
+  Widget button() => AppButton(
+        title: "Конфигуратор",
+        onPressed: () {
+          print("hello w ${AppKeys.navigatorKey.currentContext}");
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (c) => CanfiguratorScreen()),
+          );
+        },
+      );
+
   Widget additional() => Text(
         "Комплектующие и производители",
-        style: AppTextStyles.SMALL_TEXT_STYLE,
+        style: AppTextStyles.SMALL_TEXT_STYLE.copyWith(
+          backgroundColor: Colors.transparent,
+        ),
       );
 }

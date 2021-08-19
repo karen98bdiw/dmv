@@ -14,10 +14,14 @@ class AppStyles {
   static SizedBox heightDivider(double size) => SizedBox(
         height: size,
       );
+  static SizedBox widthDivider(double size) => SizedBox(
+        width: size,
+      );
 }
 
 class AppPaddings {
   static final a20 = EdgeInsets.all(20);
+  static const a10 = EdgeInsets.all(10);
   static final screenTitlePadding = EdgeInsets.only(
     top: 35,
     bottom: 30,
@@ -39,6 +43,7 @@ class AppColors {
       Color.fromRGBO(215, 215, 215, 1);
   static const WHITE = Colors.white;
   static const BLACK = Colors.black;
+  static const GREY = Color.fromRGBO(118, 118, 118, 1);
 }
 
 class AppFontSizes {
@@ -53,6 +58,11 @@ class AppFontSizes {
 class AppTextStyles {
   static const SCREEN_TITLE_STYLE = TextStyle(
     fontSize: AppFontSizes.LARGEST_TEXT,
+    fontWeight: FontWeight.w800,
+  );
+
+  static const SCREEN_SUBTITLE_STYLE = TextStyle(
+    fontSize: AppFontSizes.LARGE_TEXT,
     fontWeight: FontWeight.w800,
   );
 
