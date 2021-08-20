@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:domovedov/base/app_keys.dart';
+import 'package:flutter/cupertino.dart';
+
 class AppSizes {
-  static final templateWidth = 414;
+  static final templateWidth = 375;
   static final templateHeight = 812;
 
   static final initialWidth = window.physicalSize.width;
@@ -36,4 +39,22 @@ class AppSizes {
   static double storyItemWidth = 100;
   static double storyListHeight = 150;
   static double scaffoldHorizontalPadding = 20;
+
+  static double dHeight(double size) {
+    double percent = size * 100 / templateHeight;
+    double result =
+        MediaQuery.of(AppKeys.navigatorKey.currentContext!).size.height *
+            percent /
+            100;
+    return result;
+  }
+
+  static double dWidth(double size) {
+    double percent = size * 100 / templateWidth;
+    double result =
+        MediaQuery.of(AppKeys.navigatorKey.currentContext!).size.width *
+            percent /
+            100;
+    return result;
+  }
 }

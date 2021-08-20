@@ -33,9 +33,12 @@ class HomesStories extends ViewModelWidget<HomesViewModel> {
   ) {
     print("Homes Stories build");
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      height: AppSizes.storyListHeight,
+      margin: EdgeInsets.only(
+        top: AppSizes.dHeight(20),
+      ),
+      height: AppSizes.dHeight(151),
       child: ListView.separated(
+        padding: EdgeInsets.zero,
         scrollDirection: Axis.horizontal,
         itemBuilder: (c, i) => itemBuilder(c, i, model.stories[i]),
         separatorBuilder: separatorBuilder,
@@ -69,8 +72,8 @@ class StoryItem extends StatelessWidget {
         ),
       ),
       height: double.infinity,
-      width: AppSizes.storyItemWidth,
-      padding: EdgeInsets.all(10),
+      width: AppSizes.dWidth(101),
+      padding: EdgeInsets.all(AppSizes.dHeight(10)),
       child: Text(
         title,
         style: TextStyle(

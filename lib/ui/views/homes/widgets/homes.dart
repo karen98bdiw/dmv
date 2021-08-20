@@ -1,3 +1,4 @@
+import 'package:domovedov/ui/style/size.dart';
 import 'package:domovedov/ui/style/styles.dart';
 import 'package:domovedov/ui/views/homes/homes_viewmodel.dart';
 import 'package:domovedov/ui/views/homes/pages/home_overview_screen.dart';
@@ -87,10 +88,8 @@ class HomeItem extends StatelessWidget {
   }
 
   Widget imageView(context) => Container(
-        height: 200,
-        // width: MediaQuery.of(context).size.width - 40,
+        height: AppSizes.dHeight(251),
         decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
           image: AssetImage(
             image,
@@ -100,9 +99,9 @@ class HomeItem extends StatelessWidget {
       );
 
   Widget titleView() => Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSizes.dWidth(20),
+          vertical: AppSizes.dHeight(10),
         ),
         child: Column(
           children: [
@@ -114,14 +113,14 @@ class HomeItem extends StatelessWidget {
                   style: titleStyle(),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: AppSizes.dHeight(10),
                 ),
                 Text(
                   "140 м2",
                   style: titleStyle(),
                 ),
-                SizedBox(
-                  width: 10,
+                AppStyles.widthDivider(
+                  AppSizes.dWidth(10),
                 ),
                 Text(
                   "3,5-6 млн ₽",
@@ -129,7 +128,9 @@ class HomeItem extends StatelessWidget {
                 ),
               ],
             ),
-            AppStyles.heightDivider(10),
+            AppStyles.heightDivider(
+              AppSizes.dHeight(10),
+            ),
             RichText(
               text: TextSpan(
                 children: [

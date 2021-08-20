@@ -1,5 +1,6 @@
 import 'package:domovedov/base/app_keys.dart';
 import 'package:domovedov/base/routes.dart';
+import 'package:domovedov/ui/style/size.dart';
 import 'package:domovedov/ui/style/styles.dart';
 import 'package:domovedov/ui/views/homes/pages/configurator_screen.dart';
 import 'package:domovedov/ui/widgets/app_button.dart';
@@ -27,7 +28,7 @@ class _HomeOverViewScreenState extends State<HomeOverViewScreen> {
     print("HOME OVERVIEW BUILD");
     return AppScaffold(
       usePadding: false,
-      color: Colors.red,
+      color: AppColors.GREY,
       child: Container(
         margin: EdgeInsets.only(top: 40),
         decoration: BoxDecoration(
@@ -37,30 +38,24 @@ class _HomeOverViewScreenState extends State<HomeOverViewScreen> {
             topRight: Radius.circular(20),
           ),
         ),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    beforeImage(),
-                    image(),
-                    afterImage(),
-                  ],
-                ),
-              ),
-            ),
-            buttomContent(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              beforeImage(),
+              image(),
+              afterImage(),
+              buttomContent(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget image() => Container(
-        height: 200,
+        height: AppSizes.dHeight(326),
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(

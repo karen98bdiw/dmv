@@ -44,6 +44,7 @@ class AppColors {
   static const WHITE = Colors.white;
   static const BLACK = Colors.black;
   static const GREY = Color.fromRGBO(118, 118, 118, 1);
+  static const lightOrange = Color.fromRGBO(235, 213, 186, 1);
 }
 
 class AppFontSizes {

@@ -42,12 +42,12 @@ class AppBottomNavigationBar extends StatelessWidget {
           ),
           NavigationBarItem(
             itemIndex: 2,
-            title: "Item 3",
+            title: "Мой проект",
             asset: "assets/b3.svg",
           ),
           NavigationBarItem(
             itemIndex: 3,
-            title: "Item 4",
+            title: "Еще",
             asset: "assets/b4.svg",
           ),
         ],

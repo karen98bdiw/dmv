@@ -17,7 +17,6 @@ class AppBackButton extends StatelessWidget {
         padding: EdgeInsets.only(
           right: 10,
           top: 10,
-          bottom: 10,
         ),
         color: Colors.transparent,
         child: Icon(Icons.arrow_back),

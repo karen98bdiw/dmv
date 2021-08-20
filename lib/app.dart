@@ -9,6 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: RootView(),
+      navigatorKey: AppKeys.navigatorKey,
     );
   }
 }
