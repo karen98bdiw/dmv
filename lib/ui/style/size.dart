@@ -14,6 +14,8 @@ class AppSizes {
   static double safeAreaBottom =
       window.padding.bottom / window.devicePixelRatio;
   static double scaffoldPaddingTop = 10;
+  static double height = initialHeight / window.devicePixelRatio;
+  static double width = initialWidth / window.devicePixelRatio;
 
   static double heightByTemplate({
     required double size,
@@ -42,10 +44,7 @@ class AppSizes {
 
   static double dHeight(double size) {
     double percent = size * 100 / templateHeight;
-    double result =
-        MediaQuery.of(AppKeys.navigatorKey.currentContext!).size.height *
-            percent /
-            100;
+    double result = height * percent / 100;
     return result;
   }
 

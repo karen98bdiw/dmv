@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   #package to implement mvvm architecture
   stacked: ^2.2.3
+  carousel_slider: ^4.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -59,6 +60,18 @@ flutter:
     - s3.svg
     - h1.png
     - s1.png
+    - assets/st/s1.png
+    - assets/st/s2.png
+    - assets/st/s3.png
+    - assets/st/s4.png
+    - assets/st/s5.png
+    - assets/st/s6.png
+    - assets/home1.png
+    - assets/over1.png
+
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

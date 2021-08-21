@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:domovedov/base/images.dart';
 import 'package:domovedov/ui/style/size.dart';
 import 'package:domovedov/ui/style/styles.dart';
 import 'package:domovedov/ui/views/homes/homes_viewmodel.dart';
@@ -52,18 +54,26 @@ class Homes extends ViewModelWidget<HomesViewModel> {
       );
 }
 
-class HomeItem extends StatelessWidget {
+class HomeItem extends StatefulWidget {
   final String title;
   final String subtitle;
   final String image;
   const HomeItem({
     Key? key,
     required this.title,
-    this.image = "assets/h1.png",
+    this.image = AppImages.h1,
     required this.subtitle,
   }) : super(key: key);
 
+  @override
+  _HomeItemState createState() => _HomeItemState();
+}
+
+class _HomeItemState extends State<HomeItem> {
+  int curentIndex = 0;
+
   TextStyle titleStyle() => AppTextStyles.SMALL_TEXT_STYLE;
+
   TextStyle subStyle() => AppTextStyles.SMALLER_TEXT_STYLE;
 
   @override
@@ -73,6 +83,7 @@ class HomeItem extends StatelessWidget {
         Navigator.of(context).push(HomeOverViewScreenRoute());
       },
       child: Container(
+        color: Colors.white,
         padding: EdgeInsets.only(bottom: 20),
         alignment: Alignment.center,
         child: Column(
@@ -87,12 +98,46 @@ class HomeItem extends StatelessWidget {
     );
   }
 
-  Widget imageView(context) => Container(
+  Widget imageView(context) => Stack(
+        children: [
+          CarouselSlider(
+            items: [
+              img(),
+              img(),
+              img(),
+            ],
+            options: CarouselOptions(
+              enableInfiniteScroll: false,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  curentIndex = index;
+                });
+              },
+              height: AppSizes.dHeight(300),
+              viewportFraction: 1,
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: AppSizes.dHeight(10),
+            child: CarouseIndicator(
+              curentIndex: curentIndex,
+              length: 4,
+            ),
+          ),
+        ],
+      );
+
+  Widget img() => Container(
         height: AppSizes.dHeight(251),
+        constraints: BoxConstraints(
+          minHeight: 251,
+        ),
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage(
-            image,
+            widget.image,
           ),
           fit: BoxFit.cover,
         )),
@@ -109,7 +154,7 @@ class HomeItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  widget.title,
                   style: titleStyle(),
                 ),
                 SizedBox(
@@ -149,4 +194,52 @@ class HomeItem extends StatelessWidget {
           ],
         ),
       );
+}
+
+class CarouseIndicator extends StatelessWidget {
+  final int length;
+  final int curentIndex;
+  const CarouseIndicator({
+    Key? key,
+    required this.curentIndex,
+    required this.length,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+            length,
+            (index) => Container(
+                  margin: EdgeInsets.only(
+                    right: index != length - 1 ? 10 : 0,
+                  ),
+                  width: AppSizes.dHeight(10),
+                  height: AppSizes.dHeight(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 1,
+                      color: index == curentIndex
+                          ? Colors.white.withOpacity(
+                              1,
+                            )
+                          : Colors.white.withOpacity(
+                              0.7,
+                            ),
+                    ),
+                    color: index == curentIndex
+                        ? Colors.white.withOpacity(
+                            1,
+                          )
+                        : Colors.white.withOpacity(
+                            0.7,
+                          ),
+                  ),
+                )),
+      ),
+    );
+  }
 }

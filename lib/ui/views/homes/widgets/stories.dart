@@ -31,12 +31,15 @@ class HomesStories extends ViewModelWidget<HomesViewModel> {
     BuildContext context,
     model,
   ) {
-    print("Homes Stories build");
+    print("Homes Stories build ");
     return Container(
       margin: EdgeInsets.only(
         top: AppSizes.dHeight(20),
       ),
       height: AppSizes.dHeight(151),
+      constraints: BoxConstraints(
+        minHeight: 151,
+      ),
       child: ListView.separated(
         padding: EdgeInsets.zero,
         scrollDirection: Axis.horizontal,
@@ -68,7 +71,7 @@ class StoryItem extends StatelessWidget {
           image: AssetImage(
             asset,
           ),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
       height: double.infinity,

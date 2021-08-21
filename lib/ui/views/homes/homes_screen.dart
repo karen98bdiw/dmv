@@ -15,6 +15,7 @@ class HomesScreen extends ViewModelWidget<HomesViewModel> {
     print("home screen build");
     return AppScaffold(
       usePadding: false,
+      color: Colors.white,
       child: Container(
         child: SingleChildScrollView(
           child: Column(

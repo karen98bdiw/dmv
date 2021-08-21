@@ -22,11 +22,14 @@ class CanfiguratorScreen extends StatelessWidget {
       usePadding: false,
       color: Colors.white,
       child: Padding(
-        padding: AppPaddings.a20,
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 20,
+              ),
               _appBar(),
               AppStyles.heightDivider(AppSizes.dHeight(45)),
               titleView(),
@@ -47,6 +50,9 @@ class CanfiguratorScreen extends StatelessWidget {
                 AppSizes.dHeight(50),
               ),
               button(),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

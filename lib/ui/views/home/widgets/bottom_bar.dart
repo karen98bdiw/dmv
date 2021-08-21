@@ -20,9 +20,10 @@ class AppBottomNavigationBar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -4),
+            offset: Offset(0, -1),
+            // color: Colors.red,
             color: Color.fromRGBO(0, 0, 0, 0.03),
-            blurRadius: 20,
+            blurRadius: 5,
           ),
         ],
       ),

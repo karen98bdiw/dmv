@@ -1,3 +1,4 @@
+import 'package:domovedov/base/images.dart';
 import 'package:domovedov/ui/views/homes/widgets/stories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
@@ -6,10 +7,12 @@ class HomesViewModel extends BaseViewModel {
   NavigatorState? navigatorState;
 
   final List<StoryItem> stories = [
-    StoryItem(title: "Экспертиза строительных работ", asset: "assets/s1.png"),
-    StoryItem(title: "ДомBLYSKAR", asset: "assets/s1.png"),
-    StoryItem(title: "Нас не просили, но мы сделали", asset: "assets/s1.png"),
-    StoryItem(title: "title4", asset: "assets/s1.png"),
+    StoryItem(title: "Экспертиза строительных работ", asset: AppImages.s1),
+    StoryItem(title: "ДомBLYSKAR", asset: AppImages.s2),
+    StoryItem(title: "Нас не просили, но мы сделали", asset: AppImages.s3),
+    StoryItem(title: "title4", asset: AppImages.s4),
+    StoryItem(title: "title4", asset: AppImages.s5),
+    StoryItem(title: "title4", asset: AppImages.s6),
   ];
 
   final List<String> categiries = [

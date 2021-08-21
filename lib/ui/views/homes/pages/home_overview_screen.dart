@@ -1,4 +1,5 @@
 import 'package:domovedov/base/app_keys.dart';
+import 'package:domovedov/base/images.dart';
 import 'package:domovedov/base/routes.dart';
 import 'package:domovedov/ui/style/size.dart';
 import 'package:domovedov/ui/style/styles.dart';
@@ -60,7 +61,7 @@ class _HomeOverViewScreenState extends State<HomeOverViewScreen> {
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage(
-            "assets/h1.png",
+            AppImages.o1,
           ),
           fit: BoxFit.cover,
         )),
